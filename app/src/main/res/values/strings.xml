@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">MyBooks</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_book_detail">BookDetailActivity</string>
+    <string name="done">Done</string>
+    <string name="seetings">Setting</string>
+    <string name="action_share">Share</string>
+    <string name="title_activity_update">Update</string>
+    <string name="submit">Submit</string>
+    <string name="checkout">CheckOut</string>
+    <string name="add_detail">Add Books</string>
+    <string name="detail">Book Details</string>
+    <string name="lastcheckouttime">LastCheckedOut :</string>
+
 </resources>
