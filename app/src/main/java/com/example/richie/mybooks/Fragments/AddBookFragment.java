@@ -2,13 +2,20 @@ package com.example.richie.mybooks.Fragments;
 
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.richie.mybooks.Activities.MainActivity;
 import com.example.richie.mybooks.Pojo.Book_detail;
 import com.example.richie.mybooks.R;
 import com.example.richie.mybooks.Url.Constants;
@@ -79,8 +87,6 @@ public class AddBookFragment extends Fragment implements View.OnClickListener{
         pb_Adddata = (ProgressBar) v.findViewById(R.id.progressBarAddData);
         pb_Adddata.setVisibility(View.INVISIBLE);
         btnPost = (Button) v.findViewById(R.id.btnPost);
-        task = new ArrayList<>();
-        btnPost.setOnClickListener(this);
 
         return v;
     }
@@ -92,6 +98,25 @@ public class AddBookFragment extends Fragment implements View.OnClickListener{
      * the ConvertinputStrem.
          *
     */
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        task = new ArrayList<>();
+        btnPost.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.menu,menu);
+
+
+    }
+
     public static String POST(String url, Book_detail person) {
         InputStream inputStream = null;
         String result = "";
@@ -161,6 +186,42 @@ public class AddBookFragment extends Fragment implements View.OnClickListener{
             return true;
         else
             return false;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id){
+            case R.id.done:
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                alertDialogBuilder.setMessage("Do you want to leave the screen with unsaved changes!");
+
+                alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        getContext().startActivity(new Intent(getContext(), MainActivity.class));
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        onResume();
+                    }
+                });
+
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -257,6 +318,16 @@ public class AddBookFragment extends Fragment implements View.OnClickListener{
         inputStream.close();
         return result;
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 
 }

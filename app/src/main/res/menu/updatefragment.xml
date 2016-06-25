@@ -4,10 +4,10 @@
     >
 
     <item
-        android:id="@+id/share"
-        android:title="share"
+        android:id="@+id/action_done"
+        android:title="@string/done"
         android:showAsAction="always"
-        android:actionProviderClass="android.widget.ShareActionProvider"
+
         />
 
 

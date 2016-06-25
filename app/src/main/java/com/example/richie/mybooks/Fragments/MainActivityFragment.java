@@ -13,6 +13,9 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -36,6 +40,7 @@ import com.example.richie.mybooks.R;
 import com.example.richie.mybooks.Url.Constants;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -59,7 +64,11 @@ public class MainActivityFragment extends Fragment {
     String book_url;
     String bookid;
     String timechecked;
-    CoordinatorLayout coordinatorLayout;
+    private RecyclerView mRecyclerView;
+    private BookAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ProgressBar bar;
+
     private SwipeRefreshLayout swipeView;
 
 
@@ -73,8 +82,9 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         inflater_Layout= inflater.inflate(R.layout.fragment_main,container,false);
-        book_List = (ListView) inflater_Layout.findViewById(R.id.listView);
         swipeView= (SwipeRefreshLayout)inflater_Layout.findViewById(R.id.swipe_refresh_layout);
+        mRecyclerView = (RecyclerView) inflater_Layout.findViewById(R.id.recyclerView);
+        bar = (ProgressBar) inflater_Layout.findViewById(R.id.progressBar);
 
 
         return inflater_Layout;
@@ -183,38 +193,12 @@ public class MainActivityFragment extends Fragment {
 
 
     public void updated() {
+        mAdapter = new BookAdapter(getActivity(), book_detailList);
+        mRecyclerView.setAdapter(mAdapter);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setHasFixedSize(true);
 
-
-        bookAdapter = new Book_DetailAdapter(getActivity(), R.layout.book_items, book_detailList);
-        book_List.setAdapter(bookAdapter);
-        book_List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                bd = (Book_detail) adapterView.getItemAtPosition(i);
-                Log.v("the ", "value" + bd.toString());
-
-                if (isConnection()) {
-
-                    if (bd != null) {
-                        book_title = bd.getTitle();
-                        book_author = bd.getAuthor_name();
-                        book_publishers = bd.getPublishers();
-                        book_url = bd.getUrl();
-                        lastCheckedBy = bd.getLastCheckedBy();
-                        timechecked = bd.getLastCheckedOut();
-                        Intent d_Intent = new Intent(getActivity(), BookDetailActivity.class);
-                        d_Intent.putExtra("booktitle", book_title);
-                        d_Intent.putExtra("bookauthor", book_author);
-                        d_Intent.putExtra("bookpublishers", book_publishers);
-                        d_Intent.putExtra("bookurl", book_url);
-                        d_Intent.putExtra("userchecked", lastCheckedBy);
-                        d_Intent.putExtra("timechecked", timechecked);
-
-                        startActivity(d_Intent);
-                    }
-                }
-            }
-        });
     }
 
     @Override
@@ -290,6 +274,108 @@ public class MainActivityFragment extends Fragment {
                 Toast.makeText(getContext(), "Please connect to Intenet ", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+
+    public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyHolder> {
+
+        private LayoutInflater inflater;
+        List<Book_detail> info;
+        Book_detail in;
+        private View vh;
+        TextView tv;
+
+        int start = 0;
+        int limit = 10;
+        MyHolder holder;
+        View vw;
+
+
+        List<Book_detail> ls = Collections.emptyList();
+        Context context;
+
+        public BookAdapter(Context con, List<Book_detail> hs) {
+            this.context = con;
+            inflater = LayoutInflater.from(con);
+            this.ls = hs;
+        }
+
+        @Override
+        public MyHolder onCreateViewHolder(ViewGroup parent, int i) {
+
+            vw = inflater.inflate(R.layout.book_items, parent, false);
+            holder = new MyHolder(vw);
+
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(MyHolder myHolder, final int position) {
+
+            in = ls.get(position);
+            myHolder.book_Title.setText(in.getTitle().toString());
+            myHolder.book_Author.setText(in.getAuthor_name().toString());
+
+
+
+        }
+
+        public void setItem(String item){
+
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return ls.size();
+        }
+
+        class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+            TextView book_Title;
+            TextView book_Author;
+
+            public MyHolder(View itemView) {
+                super(itemView);
+                itemView.setOnClickListener(this);
+                book_Title = (TextView) itemView.findViewById(R.id.bookTitle);
+                book_Author = (TextView) itemView.findViewById(R.id.bookAuthor);
+            }
+
+            @Override
+            public void onClick(View v) {
+
+                int data = getAdapterPosition();
+                int itemPosition= mRecyclerView.getChildAdapterPosition(v);
+                if (in != null) {
+                    Book_detail fl = book_detailList.get(itemPosition);
+
+                    book_title = fl.getTitle();
+                    book_author = fl.getAuthor_name();
+                    book_publishers = fl.getPublishers();
+                    book_url = fl.getUrl();
+                    lastCheckedBy = fl.getLastCheckedBy();
+                    timechecked = fl.getLastCheckedOut();
+
+                    Intent d_Intent = new Intent(getActivity(), BookDetailActivity.class);
+                    d_Intent.putExtra(Intent.EXTRA_TEXT, book_title);
+                    d_Intent.putExtra("bookauthor", book_author);
+                    d_Intent.putExtra("bookpublishers", book_publishers);
+                    d_Intent.putExtra("bookurl", book_url);
+                    d_Intent.putExtra("userchecked", lastCheckedBy);
+                    d_Intent.putExtra("timechecked", timechecked);
+
+                    startActivity(d_Intent);
+
+                }
+            }
+
+
+
+        }
+
+
+
     }
 
 
