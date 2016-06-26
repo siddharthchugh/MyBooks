@@ -34,6 +34,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -52,6 +53,14 @@ public class AddBookFragment extends Fragment implements View.OnClickListener{
     EditText edit_Booktitle, edit_Bookauthor, edit_Bookpublisher, edit_Bookcategory, edit_Check;
     Button btnPost;
     String author = null;
+    String book_title;
+    String book_author;
+    String book_publishers;
+    String lastCheckedBy;
+    String book_url;
+    String bookid;
+    String timechecked;
+
     public Book_detail person;
     View v;
     List<HttpAsyncTask> task;

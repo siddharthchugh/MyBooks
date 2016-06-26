@@ -1,5 +1,8 @@
 package com.example.richie.mybooks.Pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Richie on 14-05-2016.
  */

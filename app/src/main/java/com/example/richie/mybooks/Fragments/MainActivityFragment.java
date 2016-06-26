@@ -71,12 +71,15 @@ public class MainActivityFragment extends Fragment {
     private ProgressBar bar;
     private FloatingActionButton addAction;
     private SwipeRefreshLayout swipeView;
+    private ArrayList<Book_detail> bookList;
 
 
     public MainActivityFragment() {
 
         setHasOptionsMenu(true);
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -191,6 +194,7 @@ public class MainActivityFragment extends Fragment {
         mg.execute(url);
 
     }
+
 
 
 
