@@ -36,21 +36,10 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
             fab:fab_title="@string/add"
-            fab:fab_size="mini"
+            fab:fab_size="normal"
             app:fab_icon="@drawable/ic_plus_grey"
             fab:fab_colorPressed="@color/white_pressed"/>
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/white"
-            fab:fab_title="@string/delete"
-            fab:fab_colorPressed="@color/white_pressed"
-            fab:fab_size="normal"
-            app:fab_icon="@drawable/ic_delete_grey"
-
-            />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

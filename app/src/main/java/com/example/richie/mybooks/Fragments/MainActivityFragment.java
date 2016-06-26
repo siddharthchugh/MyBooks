@@ -322,6 +322,14 @@ public class MainActivityFragment extends Fragment {
 
         }
 
+
+        public void delete(int position){
+
+      ls.remove(position);
+            notifyItemRemoved(position);
+
+        }
+
         public void setItem(String item){
 
 
@@ -332,7 +340,7 @@ public class MainActivityFragment extends Fragment {
             return ls.size();
         }
 
-        class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
             TextView book_Title;
             TextView book_Author;
@@ -340,6 +348,7 @@ public class MainActivityFragment extends Fragment {
             public MyHolder(View itemView) {
                 super(itemView);
                 itemView.setOnClickListener(this);
+                itemView.setOnLongClickListener(this);
                 book_Title = (TextView) itemView.findViewById(R.id.bookTitle);
                 book_Author = (TextView) itemView.findViewById(R.id.bookAuthor);
             }
@@ -347,8 +356,9 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                int data = getAdapterPosition();
+              int data = getAdapterPosition();
                 int itemPosition= mRecyclerView.getChildAdapterPosition(v);
+
                 if (in != null) {
                     Book_detail fl = book_detailList.get(itemPosition);
 
@@ -373,7 +383,12 @@ public class MainActivityFragment extends Fragment {
             }
 
 
+            @Override
+            public boolean onLongClick(View view) {
+                delete(getPosition());
 
+                return true;
+            }
         }
 
 
