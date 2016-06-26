@@ -2,8 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.MainActivityFragment"
-   android:orientation="vertical"
+    android:orientation="vertical"
     tools:showIn="@layout/activity_main">
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
@@ -15,22 +17,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-<!--
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:id="@+id/listView"
-                ></ListView>
--->
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
 
+
         </LinearLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
 
     <ProgressBar
         android:id="@+id/progressBar"

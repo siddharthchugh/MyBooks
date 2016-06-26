@@ -1,24 +1,34 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'ByteMark'
+            keyPassword '19mydadmom'
+            storeFile file('C:/Users/Richie/Downloads/FragmentTransactionExtended-master/MyBooks/build/generated/android.jks')
+            storePassword '19mydadmom'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
     defaultConfig {
         applicationId "com.example.richie.mybooks"
-        minSdkVersion 11
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     useLibrary 'org.apache.http.legacy'
-
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -30,6 +40,9 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.getbase:floatingactionbutton:1.10.1'
+
     //    compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'com.android.support:support-annotations:24.0.0'
 }

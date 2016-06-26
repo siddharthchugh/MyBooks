@@ -1,5 +1,6 @@
 package com.example.richie.mybooks.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -17,11 +18,22 @@ import com.example.richie.mybooks.R;
 public class MainActivity extends AppCompatActivity {
 
     private boolean doubletappressedone = false;
+    private com.getbase.floatingactionbutton.FloatingActionButton addAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        addAction = (com.getbase.floatingactionbutton.FloatingActionButton)findViewById(R.id.action_add);
+        addAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(MainActivity.this, AddBooksActivity.class));
+
+            }
+        });
+
     }
 
 

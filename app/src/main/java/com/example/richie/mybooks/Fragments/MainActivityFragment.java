@@ -38,6 +38,7 @@ import com.example.richie.mybooks.JSON.Book_Info;
 import com.example.richie.mybooks.Pojo.Book_detail;
 import com.example.richie.mybooks.R;
 import com.example.richie.mybooks.Url.Constants;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,7 +69,7 @@ public class MainActivityFragment extends Fragment {
     private BookAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ProgressBar bar;
-
+    private FloatingActionButton addAction;
     private SwipeRefreshLayout swipeView;
 
 
@@ -112,6 +113,7 @@ public class MainActivityFragment extends Fragment {
                 }, 1000);
             }
         });
+
 
     }
 
