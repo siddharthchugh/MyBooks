@@ -6,25 +6,20 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,7 +27,6 @@ import android.widget.Toast;
 
 import com.example.richie.mybooks.Activities.AddBooksActivity;
 import com.example.richie.mybooks.Activities.BookDetailActivity;
-import com.example.richie.mybooks.AdapterManager.Book_DetailAdapter;
 import com.example.richie.mybooks.Http.HttpManger;
 import com.example.richie.mybooks.JSON.Book_Info;
 import com.example.richie.mybooks.Pojo.Book_detail;
@@ -56,7 +50,6 @@ public class MainActivityFragment extends Fragment {
     NetworkInfo netInfo;
     private List<GetData> getBookdata;
     Book_detail bd;
-    private Book_DetailAdapter bookAdapter;
     private TextView td_Data;
     String book_title;
     String book_author;
@@ -68,7 +61,6 @@ public class MainActivityFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private BookAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ProgressBar bar;
     private FloatingActionButton addAction;
     private SwipeRefreshLayout swipeView;
     private ArrayList<Book_detail> bookList;
@@ -88,7 +80,7 @@ public class MainActivityFragment extends Fragment {
         inflater_Layout= inflater.inflate(R.layout.fragment_main,container,false);
         swipeView= (SwipeRefreshLayout)inflater_Layout.findViewById(R.id.swipe_refresh_layout);
         mRecyclerView = (RecyclerView) inflater_Layout.findViewById(R.id.recyclerView);
-        bar = (ProgressBar) inflater_Layout.findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) inflater_Layout.findViewById(R.id.progressBar);
 
 
         return inflater_Layout;
@@ -245,7 +237,7 @@ public class MainActivityFragment extends Fragment {
             super.onPreExecute();
 
             if (getBookdata.size() == 0) {
-                //  progressBar.setVisibility(View.VISIBLE);
+                 progressBar.setVisibility(View.VISIBLE);
             }
             getBookdata.add(this);
 
@@ -267,7 +259,7 @@ public class MainActivityFragment extends Fragment {
 
             getBookdata.remove(this);
             if (getBookdata.size() == 0) {
-                //       progressBar.setVisibility(View.INVISIBLE);
+                      progressBar.setVisibility(View.INVISIBLE);
                 swipeView.setRefreshing(false);
 
             }
