@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BookAcess</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="submit">Submit</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="user">Username</string>
+    <string name="pwd">Password</string>
+    <string name="title_activity_bank">BankActivity</string>
+    <string name="title_activity_email">EmailActivity</string>
+    <string name="comment">Comments</string>
+    <string name="mail">Email</string>
+</resources>
