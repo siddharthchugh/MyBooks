@@ -29,7 +29,7 @@ import java.util.ArrayList;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class BankActivityFragment extends Fragment {
+public class BankActivityFragment extends Fragment implements AdapterView.OnItemSelectedListener{
 
     private Button previousClick;
     private Button nextClick;
@@ -61,9 +61,6 @@ public class BankActivityFragment extends Fragment {
         previousClick.setOnClickListener(previous);
         nextClick.setOnClickListener(next);
         list_of_Banks = (Spinner) v.findViewById(R.id.spinner);
-        mdatabase = new DBHelper(getContext());
-
-
 
 
         return v;
@@ -123,6 +120,18 @@ public class BankActivityFragment extends Fragment {
         super.onDestroyView();
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String name = adapterView.getItemAtPosition(i).toString();
+
+        bank_Name.setText(name);
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }
 
 
