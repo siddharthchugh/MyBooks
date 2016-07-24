@@ -1,4 +1,4 @@
-package com.example.bookacess;
+package com.example.bookacess.Fragments;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.bookacess.Activities.MainActivity;
+import com.example.bookacess.R;
 
 /**
  * A placeholder fragment containing a simple view.

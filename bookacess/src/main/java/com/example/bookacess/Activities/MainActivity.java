@@ -1,7 +1,9 @@
-package com.example.bookacess;
+package com.example.bookacess.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.bookacess.R;
 
 
 public class MainActivity extends AppCompatActivity {

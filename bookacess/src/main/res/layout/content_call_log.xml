@@ -2,8 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment"
-    android:name="com.example.bookacess.Fragments.EmailActivityFragment"
+    android:name="com.example.bookacess.Fragments.CallLogActivityFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:layout="@layout/fragment_email" />
+    tools:layout="@layout/fragment_call_log" />

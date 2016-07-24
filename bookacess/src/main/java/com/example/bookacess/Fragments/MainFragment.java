@@ -1,4 +1,4 @@
-package com.example.bookacess;
+package com.example.bookacess.Fragments;
 
 
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.example.bookacess.Activities.BankActivity;
+import com.example.bookacess.Activities.LoginActivity;
+import com.example.bookacess.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -92,13 +95,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, Goog
     }
 
 
-
     View.OnClickListener prevPage = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
 
-            startActivity(new Intent(getContext(),LoginActivity.class));
+            startActivity(new Intent(getContext(), LoginActivity.class));
         }
     };
 
@@ -106,13 +108,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, Goog
     View.OnClickListener nextPage = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(getContext(),BankActivity.class));
+            startActivity(new Intent(getContext(), BankActivity.class));
 
         }
     };
-
-
-
 
 
     //This function will option signing intent
@@ -147,18 +146,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Goog
             textViewName.setText(acct.getDisplayName());
             textViewEmail.setText(acct.getEmail());
 
-            //Initializing image loader
-            imageLoader = CustomVolleyRequest.getInstance(getContext())
-                    .getImageLoader();
-
-            imageLoader.get(acct.getPhotoUrl().toString(),
-                    ImageLoader.getImageListener(profilePhoto,
-                            R.mipmap.ic_launcher,
-                            R.mipmap.ic_launcher));
-
-            //Loading image
-            profilePhoto.setImageUrl(acct.getPhotoUrl().toString(), imageLoader);
-
         } else {
             //If login fails
             Toast.makeText(getContext(), "Login Failed", Toast.LENGTH_LONG).show();
@@ -172,7 +159,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Goog
             signIn();
         }
     }
-
 
 
     @Override

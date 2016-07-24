@@ -1,7 +1,6 @@
-package com.example.bookacess;
+package com.example.bookacess.Fragments;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.bookacess.Activities.CallLogActivity;
+import com.example.bookacess.R;
 
 
 /**
@@ -21,8 +23,10 @@ public class EmailActivityFragment extends Fragment {
     private EditText emailAddress;
     private EditText userComments;
     private Button click_Send;
+    private Button previousClick;
+
     String user = null;
-    String mail_Subject=null;
+    String mail_Subject = null;
     String mail = null;
     String comments = null;
 
@@ -40,12 +44,25 @@ public class EmailActivityFragment extends Fragment {
         username = (EditText) v.findViewById(R.id.user);
         emailAddress = (EditText) v.findViewById(R.id.userEmail);
         userComments = (EditText) v.findViewById(R.id.userComment);
+        previousClick = (Button) v.findViewById(R.id.previousPage);
+
         click_Send = (Button) v.findViewById(R.id.loginPost);
         click_Send.setOnClickListener(emailSend);
-
+        previousClick.setOnClickListener(prevPage);
 
         return v;
     }
+
+
+    View.OnClickListener prevPage = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+
+            startActivity(new Intent(getContext(), CallLogActivity.class));
+        }
+    };
+
 
     View.OnClickListener emailSend = new View.OnClickListener() {
         @Override
@@ -57,7 +74,10 @@ public class EmailActivityFragment extends Fragment {
             comments = userComments.getText().toString();
 
             Intent email = new Intent(Intent.ACTION_SEND);
+            email.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             email.putExtra(Intent.EXTRA_EMAIL, new String[]{user});
+            email.putExtra(Intent.EXTRA_EMAIL, mail);
+
             email.putExtra(Intent.EXTRA_TEXT, comments);
 
             //need this to prompts email client only
@@ -68,10 +88,6 @@ public class EmailActivityFragment extends Fragment {
 
         }
     };
-
-
-
-
 
 
 }
