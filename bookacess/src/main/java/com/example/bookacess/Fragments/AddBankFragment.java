@@ -63,9 +63,10 @@ public class AddBankFragment extends Fragment {
 
             name = bankinfo.getText().toString();
 
-            if (databaseInsert.insertContact(name)) {
+            if (databaseInsert.insertBanks(name)) {
                 Toast.makeText(getContext(), "Bank name added", Toast.LENGTH_SHORT).show();
-            } else if (name == null) {
+            } else
+                 {
                 Toast.makeText(getContext(), "Kindly fill in the data", Toast.LENGTH_SHORT).show();
             }
             {

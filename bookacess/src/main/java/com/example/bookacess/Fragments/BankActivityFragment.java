@@ -1,6 +1,7 @@
 package com.example.bookacess.Fragments;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -36,6 +38,7 @@ public class BankActivityFragment extends Fragment {
     private TextView bank_Name;
     private Button add_bank;
 
+
     public BankActivityFragment() {
     }
 
@@ -60,18 +63,7 @@ public class BankActivityFragment extends Fragment {
         list_of_Banks = (Spinner) v.findViewById(R.id.spinner);
         mdatabase = new DBHelper(getContext());
 
-        // Spinner Drop down elements
-        ArrayList lables = mdatabase.getAllBanks();
 
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, lables);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        list_of_Banks.setAdapter(dataAdapter);
-        Log.i("the ", "banks" + lables);
 
 
         return v;

@@ -17,5 +17,12 @@
     <string name="newbank">Add Bank </string>
   <string name="logs">Show Call Logs</string>
     <string name="banktitle">Bank Name :</string>
+    <string-array name="banks">
+        <item>HDFC</item>
+        <item>HSBC</item>
+        <item>SBI</item>
+        <item>ICICI</item>
+        <item>CITY</item>
+    </string-array>
     <string name="title_activity_call_log">CallLog</string>
 </resources>
