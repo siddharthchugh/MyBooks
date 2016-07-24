@@ -33,10 +33,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String BANK_TABLE_NAME = "bankinfo";
     public static final String BANK_COLUMN_ID = "id";
     public static final String BANK_COLUMN_NAME = "name";
-//    public static final String CONTACTS_COLUMN_EMAIL = "email";
-//    public static final String CONTACTS_COLUMN_STREET = "street";
-//    public static final String CONTACTS_COLUMN_CITY = "place";
-//    public static final String CONTACTS_COLUMN_PHONE = "phone";
     private HashMap hp;
 
     public DBHelper(Context context)
@@ -65,10 +61,6 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
-  //      contentValues.put("phone", phone);
-//        contentValues.put("email", email);
-//        contentValues.put("street", street);
-//        contentValues.put("place", place);
         db.insert("bankinfo", null, contentValues);
         return true;
     }
@@ -85,7 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public ArrayList<String> getAllCotacts()
+    public ArrayList<String> getAllBanks()
     {
         ArrayList<String> array_list = new ArrayList<String>();
 

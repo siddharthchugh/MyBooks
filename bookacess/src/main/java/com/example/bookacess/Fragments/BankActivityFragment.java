@@ -61,7 +61,7 @@ public class BankActivityFragment extends Fragment {
         mdatabase = new DBHelper(getContext());
 
         // Spinner Drop down elements
-        ArrayList lables = mdatabase.getAllCotacts();
+        ArrayList lables = mdatabase.getAllBanks();
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
@@ -133,41 +133,6 @@ public class BankActivityFragment extends Fragment {
 
 }
 
-
-//class MyCustomAdapter extends ArrayAdapter<String> {
-//
-//    public MyCustomAdapter(Context context, int textViewResourceId,
-//                           String[] objects) {
-//        super(context, textViewResourceId, objects);
-//        // TODO Auto-generated constructor stub
-//    }
-//
-//    @Override
-//    public View getDropDownView(int position, View convertView,
-//                                ViewGroup parent) {
-//        // TODO Auto-generated method stub
-//        return getCustomView(position, convertView, parent);
-//    }
-//
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        // TODO Auto-generated method stub
-//        return getCustomView(position, convertView, parent);
-//    }
-//
-//    public View getCustomView(int position, View convertView, ViewGroup parent) {
-//        // TODO Auto-generated method stub
-//        //return super.getView(position, convertView, parent);
-//
-//        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View row = inflater.inflate(R.layout.spinner_data, parent, false);
-//        TextView label = (TextView) row.findViewById(R.id.data_bank);
-//
-////        label.setText(li[position]);
-//
-//
-//        return row;
-//    }
 
 
 

@@ -45,7 +45,7 @@
                 android:value=".Activities.BankActivity" />
         </activity>
         <activity
-            android:name=".AddBankActivity"
+            android:name=".Activities.AddBankActivity"
             android:label="@string/title_activity_email"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
