@@ -61,6 +61,7 @@ public class BankActivityFragment extends Fragment implements AdapterView.OnItem
         previousClick.setOnClickListener(previous);
         nextClick.setOnClickListener(next);
         list_of_Banks = (Spinner) v.findViewById(R.id.spinner);
+        list_of_Banks.setOnItemSelectedListener(this);
 
 
         return v;
